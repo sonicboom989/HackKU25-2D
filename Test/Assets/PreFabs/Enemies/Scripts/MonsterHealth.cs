@@ -11,7 +11,6 @@ public class MonsterHealth : MonoBehaviour
     void Start()
     {
         currentHealth = maxHealth;
-        Debug.Log($"{gameObject.name} spawned with {currentHealth} health.");
     }
 
     public void TakeDamage(int damage)

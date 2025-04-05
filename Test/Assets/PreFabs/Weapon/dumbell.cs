@@ -7,22 +7,29 @@ public class Dumbbell : MonoBehaviour
 
     void Start()
     {
-        Destroy(gameObject, lifetime);
+        Destroy(gameObject, lifetime); // Auto-destroy after time
     }
 
-    void OnCollisionEnter2D(Collision2D collision)
+    void OnTriggerEnter2D(Collider2D other)
     {
-        if (collision.gameObject.CompareTag("Enemy"))
+        Debug.Log("Trigger hit: " + other.name); // Confirm this is working
+
+        if (other.CompareTag("Enemy"))
         {
-            Debug.Log("Dumbbell collided with: " + collision.gameObject.name);
-            MonsterHealth health = collision.gameObject.GetComponent<MonsterHealth>();
+            Debug.Log("Enemy hit by dumbbell!"); // Confirm tag detection
+
+            MonsterHealth health = other.GetComponent<MonsterHealth>();
             if (health != null)
             {
-                health.TakeDamage(1);
+                Debug.Log("Enemy has MonsterHealth! Dealing damage...");
+                health.TakeDamage(damage);
+            }
+            else
+            {
+                Debug.LogWarning("Enemy is missing MonsterHealth script!");
             }
         }
 
-        // Destroy dumbbell on any collision
         Destroy(gameObject);
     }
 }
