@@ -9,6 +9,9 @@ public class PlayerMovement : MonoBehaviour
     [HideInInspector]
     public Vector2 moveDir;
     public Animator am;
+    public GameObject dumbbellPrefab; // Drag prefab in Inspector
+    public float throwForce = 10f;
+
 
 
 
@@ -25,6 +28,11 @@ public class PlayerMovement : MonoBehaviour
         InputManagement();
         FlipSprite();
         UpdateAnimatorDirection();
+        if (Input.GetMouseButtonDown(0)) // Left click
+        {
+            ThrowDumbbell();
+        }
+
     }
 
     void FixedUpdate()
@@ -79,4 +87,27 @@ public class PlayerMovement : MonoBehaviour
             Debug.Log("Walking side or idle");
         }
     }
+    void ThrowDumbbell()
+    {
+        if (dumbbellPrefab == null)
+        {
+            Debug.LogWarning("Dumbbell prefab not assigned!");
+            return;
+        }
+
+        Vector3 mouseWorldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        mouseWorldPos.z = 0f;
+
+        Vector2 throwDir = (mouseWorldPos - transform.position).normalized;
+
+        Vector3 spawnPos = transform.position + new Vector3(0, 0.5f, 0); // adjust Y as needed
+        GameObject dumbbell = Instantiate(dumbbellPrefab, spawnPos, Quaternion.identity);
+        Rigidbody2D rbDumbbell = dumbbell.GetComponent<Rigidbody2D>();
+
+        if (rbDumbbell != null)
+        {
+            rbDumbbell.linearVelocity = throwDir * throwForce;
+        }
+    }
+
 }

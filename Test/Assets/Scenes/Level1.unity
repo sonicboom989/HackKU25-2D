@@ -200,6 +200,10 @@ PrefabInstance:
       propertyPath: m_Offset.y
       value: 0.22036125
       objectReference: {fileID: 0}
+    - target: {fileID: 6648154288074144365, guid: 0bff737d7a125d0489b6d3a5d6b8ad2a, type: 3}
+      propertyPath: dumbbellPrefab
+      value: 
+      objectReference: {fileID: 5768086775770531229, guid: b9864c890340e3a41aac0e879bf7c73f, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -334,6 +338,8 @@ MonoBehaviour:
   moveSpeed: 5
   moveDir: {x: 0, y: 0}
   am: {fileID: 0}
+  dumbbellPrefab: {fileID: 0}
+  throwForce: 10
 --- !u!61 &991630703
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -771,7 +777,7 @@ Transform:
   m_GameObject: {fileID: 1925296418}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0.15, y: 0.05, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
