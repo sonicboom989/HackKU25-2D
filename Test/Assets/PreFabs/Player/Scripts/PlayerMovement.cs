@@ -96,25 +96,23 @@ public class PlayerMovement : MonoBehaviour
     }
     void ThrowDumbbell()
     {
-        if (dumbbellPrefab == null)
-        {
-            Debug.LogWarning("Dumbbell prefab not assigned!");
-            return;
-        }
+        if (dumbbellPrefab == null) return;
 
         Vector3 mouseWorldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        mouseWorldPos.z = 0f;
+        mouseWorldPos.z = 0f; // Important: Flatten Z
 
         Vector2 throwDir = (mouseWorldPos - transform.position).normalized;
 
-        Vector3 spawnPos = transform.position + new Vector3(0, 0.25f, 0); // adjust Y as needed
-        GameObject dumbbell = Instantiate(dumbbellPrefab, spawnPos, Quaternion.identity);
-        Rigidbody2D rbDumbbell = dumbbell.GetComponent<Rigidbody2D>();
+        Vector3 spawnPos = transform.position + new Vector3(0, 0.1f, 0); // Small Y offset if needed
 
-        if (rbDumbbell != null)
+        GameObject dumbbell = Instantiate(dumbbellPrefab, spawnPos, Quaternion.identity);
+        Rigidbody2D rb = dumbbell.GetComponent<Rigidbody2D>();
+        if (rb != null)
         {
-            rbDumbbell.linearVelocity = throwDir * throwForce;
+            rb.linearVelocity = throwDir * throwForce;
         }
     }
 
 }
+
+
