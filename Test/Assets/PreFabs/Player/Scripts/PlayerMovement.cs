@@ -9,9 +9,13 @@ public class PlayerMovement : MonoBehaviour
     [HideInInspector]
     public Vector2 moveDir;
     public Animator am;
-    public GameObject dumbbellPrefab; // Drag prefab in Inspector
+
+    // Throwing
+    public GameObject dumbbellPrefab;
     public float throwForce = 10f;
 
+    // Animation direction
+    private Vector2 lastMoveDir = Vector2.down; // Default facing down
 
 
 
@@ -47,6 +51,12 @@ public class PlayerMovement : MonoBehaviour
         float moveY = Input.GetAxisRaw("Vertical");
 
         moveDir = new Vector2(moveX, moveY).normalized;
+
+        // Store last non-zero direction
+        if (moveDir != Vector2.zero)
+        {
+            lastMoveDir = moveDir;
+        }
     }
 
     void Move()
@@ -68,23 +78,20 @@ public class PlayerMovement : MonoBehaviour
 
     void UpdateAnimatorDirection()
     {
-        bool isWalking = moveDir.x != 0 || moveDir.y != 0;
+        bool isWalking = moveDir != Vector2.zero;
         am.SetBool("isWalking", isWalking);
 
-        if (moveDir.y > 0.1f)
+        if (lastMoveDir.y > 0.1f)
         {
             am.SetInteger("Direction", 1);  // Up
-            Debug.Log("Walking backward (up)");
         }
-        else if (moveDir.y < -0.1f)
+        else if (lastMoveDir.y < -0.1f)
         {
             am.SetInteger("Direction", -1); // Down
-            Debug.Log("Walking forward (down)");
         }
-        else
+        else if (lastMoveDir.x != 0)
         {
             am.SetInteger("Direction", 0);  // Side
-            Debug.Log("Walking side or idle");
         }
     }
     void ThrowDumbbell()
@@ -100,7 +107,7 @@ public class PlayerMovement : MonoBehaviour
 
         Vector2 throwDir = (mouseWorldPos - transform.position).normalized;
 
-        Vector3 spawnPos = transform.position + new Vector3(0, 1.5f, 0); // adjust Y as needed
+        Vector3 spawnPos = transform.position + new Vector3(0, 0.25f, 0); // adjust Y as needed
         GameObject dumbbell = Instantiate(dumbbellPrefab, spawnPos, Quaternion.identity);
         Rigidbody2D rbDumbbell = dumbbell.GetComponent<Rigidbody2D>();
 
