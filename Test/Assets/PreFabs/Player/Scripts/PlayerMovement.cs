@@ -100,7 +100,7 @@ public class PlayerMovement : MonoBehaviour
 
         Vector2 throwDir = (mouseWorldPos - transform.position).normalized;
 
-        Vector3 spawnPos = transform.position + new Vector3(0, 0.5f, 0); // adjust Y as needed
+        Vector3 spawnPos = transform.position + new Vector3(0, 1.5f, 0); // adjust Y as needed
         GameObject dumbbell = Instantiate(dumbbellPrefab, spawnPos, Quaternion.identity);
         Rigidbody2D rbDumbbell = dumbbell.GetComponent<Rigidbody2D>();
 
