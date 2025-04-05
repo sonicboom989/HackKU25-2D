@@ -1,0 +1,22 @@
+* text=auto
+# Unity scene files
+*.unity text eol=lf
+
+# Other Unity files (like prefabs, materials, etc.)
+*.prefab text eol=lf
+*.mat text eol=lf
+*.asset text eol=lf
+
+
+# Unity scene files
+*.unity text eol=lf
+
+# Unity meta files
+*.meta text eol=lf
+
+# Other Unity files
+*.prefab text eol=lf
+*.mat text eol=lf
+*.asset text eol=lf
+
+* text eol=lf
