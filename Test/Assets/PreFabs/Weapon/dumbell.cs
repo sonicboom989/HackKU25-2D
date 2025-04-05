@@ -1,20 +1,27 @@
-    using UnityEngine;
+using UnityEngine;
 
-public class dumbell : MonoBehaviour
+public class Dumbbell : MonoBehaviour
 {
-    public class Dumbbell : MonoBehaviour
+    public float lifetime = 3f;
+    public int damage = 1;
+
+    void Start()
     {
-        public float lifetime = 3f;
+        Destroy(gameObject, lifetime);
+    }
 
-        void Start()
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Enemy"))
         {
-            Destroy(gameObject, lifetime);
+            EnemyAI enemy = collision.gameObject.GetComponent<EnemyAI>();
+            if (enemy != null)
+            {
+                enemy.TakeDamage(damage);
+            }
         }
 
-        void OnCollisionEnter2D(Collision2D collision)
-        {
-            // Example: hit enemy or wall
-            Debug.Log("Dumbbell hit " + collision.gameObject.name);
-        }
+        // Destroy dumbbell on any collision
+        Destroy(gameObject);
     }
 }

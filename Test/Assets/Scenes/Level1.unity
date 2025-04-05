@@ -526,9 +526,25 @@ PrefabInstance:
       propertyPath: m_Name
       value: Dumbell_Enemy
       objectReference: {fileID: 0}
+    - target: {fileID: 4035880077827850426, guid: 7adb1f73d20baec4682ea120d6a60177, type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 4934976436241190089, guid: 7adb1f73d20baec4682ea120d6a60177, type: 3}
+      propertyPath: m_BodyType
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4934976436241190089, guid: 7adb1f73d20baec4682ea120d6a60177, type: 3}
+      propertyPath: m_Constraints
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 5956288029446772023, guid: 7adb1f73d20baec4682ea120d6a60177, type: 3}
       propertyPath: speed
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5956288029446772023, guid: 7adb1f73d20baec4682ea120d6a60177, type: 3}
+      propertyPath: moveSpeed
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
