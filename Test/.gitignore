@@ -74,4 +74,6 @@ crashlytics-build.properties
 /[Aa]ssets/[Ss]treamingAssets/aa/*
 
 .vscode/
+/Assets/TextMesh Pro/
+
 
