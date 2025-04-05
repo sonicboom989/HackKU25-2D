@@ -4,7 +4,7 @@ using System.Collections;
 public class CoinPickup : MonoBehaviour
 {
     public int coinValue = 1;
-    public float pickupDelay = 1.0f; // Delay (in seconds) before the coin can be picked up
+    public float pickupDelay = 0.25f; // Delay (in seconds) before the coin can be picked up
     private bool canPickup = false;
     private Collider2D coinCollider;
 

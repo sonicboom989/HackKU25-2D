@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 4194047483051857037}
   m_Layer: 0
   m_Name: Dumbell
-  m_TagString: Untagged
+  m_TagString: Dumbbell
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -200,3 +200,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lifetime: 3
   damage: 1
+  speed: 10
+  spawnOffset: {x: 0, y: 0.5, z: 0}

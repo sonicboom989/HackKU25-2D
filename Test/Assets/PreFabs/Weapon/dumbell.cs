@@ -1,11 +1,11 @@
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Dumbbell : MonoBehaviour
 {
     public float lifetime = 3f;
     public int damage = 1;
     public float speed = 10f;
-    public Vector3 spawnOffset = new Vector3(0, 0.5f, 0); // Adjust offset as needed
+    public Vector3 spawnOffset = new Vector3(0, 0.5f, 0); // Adjust if needed
 
     private Rigidbody2D rb;
 
@@ -13,49 +13,67 @@ public class Dumbbell : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
 
-        // Move the dumbbell by the offset to avoid immediate collision with the player.
+        // Move the dumbbell slightly to avoid immediate collision with the player
         transform.position += spawnOffset;
 
-        // Ignore collisions with the player.
+        Collider2D myCol = GetComponent<Collider2D>();
+
+        // Ignore collisions with the player
         GameObject player = GameObject.FindGameObjectWithTag("Player");
         if (player != null)
         {
-            Collider2D playerCollider = player.GetComponent<Collider2D>();
-            Collider2D dumbbellCollider = GetComponent<Collider2D>();
-            if (playerCollider != null && dumbbellCollider != null)
+            Collider2D playerCol = player.GetComponent<Collider2D>();
+            if (playerCol != null && myCol != null)
             {
-                Physics2D.IgnoreCollision(playerCollider, dumbbellCollider);
+                Physics2D.IgnoreCollision(myCol, playerCol);
             }
         }
 
-        // Calculate direction toward the mouse cursor.
+        // Ignore collisions with coins
+        GameObject[] coins = GameObject.FindGameObjectsWithTag("Coin");
+        foreach (GameObject coin in coins)
+        {
+            Collider2D coinCol = coin.GetComponent<Collider2D>();
+            if (coinCol != null && myCol != null)
+            {
+                Physics2D.IgnoreCollision(myCol, coinCol);
+            }
+        }
+
+        // Ignore collisions with other dumbbells
+        GameObject[] allDumbbells = GameObject.FindGameObjectsWithTag("Dumbbell");
+        foreach (GameObject db in allDumbbells)
+        {
+            if (db != gameObject)
+            {
+                Collider2D otherCol = db.GetComponent<Collider2D>();
+                if (otherCol != null && myCol != null)
+                {
+                    Physics2D.IgnoreCollision(myCol, otherCol);
+                }
+            }
+        }
+
+        // Move toward the mouse position
         Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         Vector2 direction = (mousePos - (Vector2)transform.position).normalized;
         rb.linearVelocity = direction * speed;
 
+        // Auto-destroy after a few seconds
         Destroy(gameObject, lifetime);
     }
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        Debug.Log("Trigger hit: " + other.name);
-
         if (other.CompareTag("Enemy"))
         {
-            Debug.Log("Enemy hit by dumbbell!");
-
             MonsterHealth health = other.GetComponent<MonsterHealth>();
             if (health != null)
             {
-                Debug.Log("Enemy has MonsterHealth! Dealing damage...");
                 health.TakeDamage(damage);
             }
-            else
-            {
-                Debug.LogWarning("Enemy is missing MonsterHealth script!");
-            }
 
-            Destroy(gameObject, 0.01f);
+            Destroy(gameObject); // Destroy only after hitting an enemy
         }
     }
 }
