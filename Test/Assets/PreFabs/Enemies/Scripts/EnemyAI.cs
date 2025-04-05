@@ -36,7 +36,10 @@ public class EnemyAI : MonoBehaviour
 
         if (currentHealth <= 0)
         {
+            Debug.Log("Enemy died!");
             Destroy(gameObject);
         }
+
     }
 }
+
