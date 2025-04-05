@@ -3,8 +3,8 @@ using TMPro;
 
 public class CoinManager : MonoBehaviour
 {
-    public int coinCount = 0; // Starting coins
-    public TextMeshProUGUI coinText; // UI text displaying coins
+    public int coinCount = 0;
+    public TextMeshProUGUI coinText;
 
     void Start()
     {
