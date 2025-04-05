@@ -213,5 +213,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 3
-  coinPrefab: {fileID: 2975569832413754687, guid: c83ffdefd58a4754f80265de0a89b9aa, type: 3}
+  coinPrefab: {fileID: -2253911629886400664, guid: cfcfabe0ddeb93248a809b8541bdabc8, type: 3}
   coinAmount: 1

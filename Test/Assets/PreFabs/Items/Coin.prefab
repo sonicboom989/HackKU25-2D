@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 6188244105225945780}
   - component: {fileID: 7116842227920314917}
   - component: {fileID: 7527190044062317742}
+  - component: {fileID: 8516065447496017414}
   m_Layer: 0
   m_Name: Coin
   m_TagString: Untagged
@@ -29,7 +30,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 6.76, y: 1.47, z: 0}
-  m_LocalScale: {x: 0.29876053, y: 0.29876053, z: 0.29876053}
+  m_LocalScale: {x: 5, y: 5, z: 0.29876053}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -91,12 +92,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 7675826601332790545, guid: 600bae483559d244a8e898a914e4c7d0, type: 3}
+  m_Sprite: {fileID: -7395221895880105243, guid: cfcfabe0ddeb93248a809b8541bdabc8, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 3.2, y: 3.2}
+  m_Size: {x: 0.25, y: 0.25}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -139,12 +140,28 @@ BoxCollider2D:
   m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 3.2, y: 3.2}
-    newSize: {x: 3.2, y: 3.2}
+    pivot: {x: 0.48000002, y: -0.16000001}
+    oldSize: {x: 0.25, y: 0.25}
+    newSize: {x: 0.25, y: 0.25}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   m_Size: {x: 3.2, y: 3.2}
   m_EdgeRadius: 0
+--- !u!111 &8516065447496017414
+Animation:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2975569832413754687}
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Animation: {fileID: -7452950235790475735, guid: cfcfabe0ddeb93248a809b8541bdabc8, type: 3}
+  m_Animations: []
+  m_WrapMode: 0
+  m_PlayAutomatically: 1
+  m_AnimatePhysics: 0
+  m_UpdateMode: 0
+  m_CullingType: 0

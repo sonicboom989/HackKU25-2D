@@ -3,7 +3,7 @@ using UnityEngine;
 public class MonsterHealth : MonoBehaviour
 {
     public int maxHealth = 3;
-    int currentHealth;
+    private int currentHealth;
 
     public GameObject coinPrefab;
     public int coinAmount = 1;
@@ -27,7 +27,15 @@ public class MonsterHealth : MonoBehaviour
     void Die()
     {
         Debug.Log($"{gameObject.name} died. Dropping {coinAmount} coin(s).");
-        Instantiate(coinPrefab, transform.position, Quaternion.identity);
-        Destroy(gameObject);
+
+        // Drop coins with a small random offset
+        for (int i = 0; i < coinAmount; i++)
+        {
+            Vector3 spawnPos = transform.position + new Vector3(Random.Range(-0.5f, 0.5f), Random.Range(-0.5f, 0.5f), 0);
+            Instantiate(coinPrefab, spawnPos, Quaternion.identity);
+        }
+
+        // Instead of destroying the enemy, deactivate it.
+        gameObject.SetActive(false);
     }
 }
