@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 8439828471613785587}
   - component: {fileID: 5956288029446772023}
   - component: {fileID: 2458180887618339435}
+  - component: {fileID: 6197960306270349818}
   m_Layer: 0
   m_Name: Dumbell_Enemy
   m_TagString: Enemy
@@ -199,7 +200,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 058a131df6380ac4fad5c683f428ef7b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 2
+  moveSpeed: 2.5
 --- !u!114 &2458180887618339435
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -213,5 +214,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 3
-  coinPrefab: {fileID: -2253911629886400664, guid: cfcfabe0ddeb93248a809b8541bdabc8, type: 3}
+  coinPrefab: {fileID: 3280935676356910619, guid: c83ffdefd58a4754f80265de0a89b9aa, type: 3}
   coinAmount: 1
+--- !u!114 &6197960306270349818
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4035880077827850426}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fcdbf14bc5bdb2441ae3bad539bb1458, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damageAmount: 1

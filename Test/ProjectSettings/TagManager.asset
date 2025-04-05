@@ -5,6 +5,9 @@ TagManager:
   serializedVersion: 3
   tags:
   - Enemy
+  - Undefined
+  - Dumbbell
+  - Coin
   layers:
   - Default
   - TransparentFX
