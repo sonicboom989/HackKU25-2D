@@ -10,6 +10,13 @@ public class PlayerMovement : MonoBehaviour
     public Vector2 moveDir;
     public Animator am;
 
+    // Throwing
+    public GameObject dumbbellPrefab;
+    public float throwForce = 10f;
+
+    // Animation direction
+    private Vector2 lastMoveDir = Vector2.down; // Default facing down
+
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -25,6 +32,11 @@ public class PlayerMovement : MonoBehaviour
         InputManagement();
         FlipSprite();
         UpdateAnimatorDirection();
+        if (Input.GetMouseButtonDown(0)) // Left click
+        {
+            ThrowDumbbell();
+        }
+
     }
 
     void FixedUpdate()
@@ -39,6 +51,12 @@ public class PlayerMovement : MonoBehaviour
         float moveY = Input.GetAxisRaw("Vertical");
 
         moveDir = new Vector2(moveX, moveY).normalized;
+
+        // Store last non-zero direction
+        if (moveDir != Vector2.zero)
+        {
+            lastMoveDir = moveDir;
+        }
     }
 
     void Move()
@@ -60,23 +78,43 @@ public class PlayerMovement : MonoBehaviour
 
     void UpdateAnimatorDirection()
     {
-        bool isWalking = moveDir.x != 0 || moveDir.y != 0;
+        bool isWalking = moveDir != Vector2.zero;
         am.SetBool("isWalking", isWalking);
 
-        if (moveDir.y > 0.1f)
+        if (lastMoveDir.y > 0.1f)
         {
             am.SetInteger("Direction", 1);  // Up
-            Debug.Log("Walking backward (up)");
         }
-        else if (moveDir.y < -0.1f)
+        else if (lastMoveDir.y < -0.1f)
         {
             am.SetInteger("Direction", -1); // Down
-            Debug.Log("Walking forward (down)");
         }
-        else
+        else if (lastMoveDir.x != 0)
         {
             am.SetInteger("Direction", 0);  // Side
-            Debug.Log("Walking side or idle");
         }
     }
+    void ThrowDumbbell()
+    {
+        if (dumbbellPrefab == null)
+        {
+            Debug.LogWarning("Dumbbell prefab not assigned!");
+            return;
+        }
+
+        Vector3 mouseWorldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        mouseWorldPos.z = 0f;
+
+        Vector2 throwDir = (mouseWorldPos - transform.position).normalized;
+
+        Vector3 spawnPos = transform.position + new Vector3(0, 0.25f, 0); // adjust Y as needed
+        GameObject dumbbell = Instantiate(dumbbellPrefab, spawnPos, Quaternion.identity);
+        Rigidbody2D rbDumbbell = dumbbell.GetComponent<Rigidbody2D>();
+
+        if (rbDumbbell != null)
+        {
+            rbDumbbell.linearVelocity = throwDir * throwForce;
+        }
+    }
+
 }
