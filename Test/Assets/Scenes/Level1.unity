@@ -457,7 +457,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5085605128073748395, guid: 0bff737d7a125d0489b6d3a5d6b8ad2a, type: 3}
       propertyPath: m_Name
-      value: 'Player '
+      value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 5085605128073748395, guid: 0bff737d7a125d0489b6d3a5d6b8ad2a, type: 3}
       propertyPath: m_TagString
@@ -483,6 +483,10 @@ PrefabInstance:
       propertyPath: dumbbellPrefab
       value: 
       objectReference: {fileID: 5768086775770531229, guid: b9864c890340e3a41aac0e879bf7c73f, type: 3}
+    - target: {fileID: 8164965547094322315, guid: 0bff737d7a125d0489b6d3a5d6b8ad2a, type: 3}
+      propertyPath: m_GravityScale
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1022,7 +1026,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc951c6b6a191c643af71dc3b53dcabc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 100
+  maxHealth: 3
   coinPrefab: {fileID: 1662264746}
   coinAmount: 1
 --- !u!1 &1419042061
@@ -1069,7 +1073,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d88abeddb62ae484eb6cc7b272e4a1ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyToSpawn: {fileID: 0}
+  enemyToSpawn: {fileID: 1348616037}
   spawnDelay: 3
   enemySpawnRadius: 5
 --- !u!1 &1548211921
@@ -1527,7 +1531,7 @@ Transform:
   m_GameObject: {fileID: 1925296418}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.15, y: 0.05, z: 0}
+  m_LocalPosition: {x: 0.15, y: -0.65, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

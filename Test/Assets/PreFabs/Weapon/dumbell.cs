@@ -14,10 +14,11 @@ public class Dumbbell : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Enemy"))
         {
-            EnemyAI enemy = collision.gameObject.GetComponent<EnemyAI>();
-            if (enemy != null)
+            Debug.Log("Dumbbell collided with: " + collision.gameObject.name);
+            MonsterHealth health = collision.gameObject.GetComponent<MonsterHealth>();
+            if (health != null)
             {
-                enemy.TakeDamage(damage);
+                health.TakeDamage(1);
             }
         }
 

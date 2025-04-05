@@ -2,22 +2,24 @@ using UnityEngine;
 
 public class MonsterHealth : MonoBehaviour
 {
-    public int maxHealth = 100;
+    public int maxHealth = 3;
     int currentHealth;
 
-    public GameObject coinPrefab; // prefab of coin dropped
-    public int coinAmount = 1; // coins dropped when dead
+    public GameObject coinPrefab;
+    public int coinAmount = 1;
 
     void Start()
     {
         currentHealth = maxHealth;
+        Debug.Log($"{gameObject.name} spawned with {currentHealth} health.");
     }
 
     public void TakeDamage(int damage)
     {
         currentHealth -= damage;
-        
-        if(currentHealth <= 0)
+        Debug.Log($"{gameObject.name} took {damage} damage. Current health: {currentHealth}");
+
+        if (currentHealth <= 0)
         {
             Die();
         }
@@ -25,7 +27,7 @@ public class MonsterHealth : MonoBehaviour
 
     void Die()
     {
-        // Instantiate coin at monster position
+        Debug.Log($"{gameObject.name} died. Dropping {coinAmount} coin(s).");
         Instantiate(coinPrefab, transform.position, Quaternion.identity);
         Destroy(gameObject);
     }
