@@ -18,3 +18,5 @@
 *.prefab text eol=lf
 *.mat text eol=lf
 *.asset text eol=lf
+
+* text eol=lf
