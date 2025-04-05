@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -8,12 +8,15 @@ public class PlayerMovement : MonoBehaviour
     Rigidbody2D rb;
     [HideInInspector]
     public Vector2 moveDir;
+    public Animator am;
+
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        am = GetComponent<Animator>(); // ✅ Auto-assign the Animator
     }
 
     // Update is called once per frame
@@ -21,6 +24,7 @@ public class PlayerMovement : MonoBehaviour
     {
         InputManagement();
         FlipSprite();
+        UpdateAnimatorDirection();
     }
 
     void FixedUpdate()
@@ -52,5 +56,27 @@ public class PlayerMovement : MonoBehaviour
             scale.x = -Mathf.Abs(scale.x); // Ensure negative X
 
         transform.localScale = scale;
+    }
+
+    void UpdateAnimatorDirection()
+    {
+        bool isWalking = moveDir.x != 0 || moveDir.y != 0;
+        am.SetBool("isWalking", isWalking);
+
+        if (moveDir.y > 0.1f)
+        {
+            am.SetInteger("Direction", 1);  // Up
+            Debug.Log("Walking backward (up)");
+        }
+        else if (moveDir.y < -0.1f)
+        {
+            am.SetInteger("Direction", -1); // Down
+            Debug.Log("Walking forward (down)");
+        }
+        else
+        {
+            am.SetInteger("Direction", 0);  // Side
+            Debug.Log("Walking side or idle");
+        }
     }
 }
