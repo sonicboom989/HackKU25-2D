@@ -216,6 +216,7 @@ MonoBehaviour:
   maxHealth: 3
   coinPrefab: {fileID: 3280935676356910619, guid: c83ffdefd58a4754f80265de0a89b9aa, type: 3}
   coinAmount: 1
+  deathAnimLength: 0.5
 --- !u!114 &6197960306270349818
 MonoBehaviour:
   m_ObjectHideFlags: 0

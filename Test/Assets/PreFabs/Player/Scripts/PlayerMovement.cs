@@ -2,7 +2,6 @@
 
 public class PlayerMovement : MonoBehaviour
 {
-
     // Movement
     public float moveSpeed;
     Rigidbody2D rb;
@@ -14,36 +13,36 @@ public class PlayerMovement : MonoBehaviour
     public GameObject dumbbellPrefab;
     public float throwForce = 10f;
 
+    // Audio
+    public AudioClip throwSound;
+    private AudioSource audioSource;
+
     // Animation direction
     private Vector2 lastMoveDir = Vector2.down; // Default facing down
 
-
-
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         am = GetComponent<Animator>();
+        audioSource = GetComponent<AudioSource>();
     }
 
-    // Update is called once per frame
     void Update()
     {
         InputManagement();
         FlipSprite();
         UpdateAnimatorDirection();
+
         if (Input.GetMouseButtonDown(0)) // Left click
         {
             ThrowDumbbell();
         }
-
     }
 
     void FixedUpdate()
     {
         Move();
     }
-
 
     void InputManagement()
     {
@@ -52,7 +51,6 @@ public class PlayerMovement : MonoBehaviour
 
         moveDir = new Vector2(moveX, moveY).normalized;
 
-        // Store last non-zero direction
         if (moveDir != Vector2.zero)
         {
             lastMoveDir = moveDir;
@@ -69,9 +67,9 @@ public class PlayerMovement : MonoBehaviour
         Vector3 scale = transform.localScale;
 
         if (moveDir.x > 0)
-            scale.x = Mathf.Abs(scale.x);  // Ensure positive X
+            scale.x = Mathf.Abs(scale.x);
         else if (moveDir.x < 0)
-            scale.x = -Mathf.Abs(scale.x); // Ensure negative X
+            scale.x = -Mathf.Abs(scale.x);
 
         transform.localScale = scale;
     }
@@ -82,28 +80,22 @@ public class PlayerMovement : MonoBehaviour
         am.SetBool("isWalking", isWalking);
 
         if (lastMoveDir.y > 0.1f)
-        {
-            am.SetInteger("Direction", 1);  // Up
-        }
+            am.SetInteger("Direction", 1);
         else if (lastMoveDir.y < -0.1f)
-        {
-            am.SetInteger("Direction", -1); // Down
-        }
+            am.SetInteger("Direction", -1);
         else if (lastMoveDir.x != 0)
-        {
-            am.SetInteger("Direction", 0);  // Side
-        }
+            am.SetInteger("Direction", 0);
     }
+
     void ThrowDumbbell()
     {
         if (dumbbellPrefab == null) return;
 
         Vector3 mouseWorldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        mouseWorldPos.z = 0f; // Important: Flatten Z
+        mouseWorldPos.z = 0f;
 
         Vector2 throwDir = (mouseWorldPos - transform.position).normalized;
-
-        Vector3 spawnPos = transform.position + new Vector3(0, 0.1f, 0); // Small Y offset if needed
+        Vector3 spawnPos = transform.position + new Vector3(0, 0.1f, 0);
 
         GameObject dumbbell = Instantiate(dumbbellPrefab, spawnPos, Quaternion.identity);
         Rigidbody2D rb = dumbbell.GetComponent<Rigidbody2D>();
@@ -111,8 +103,10 @@ public class PlayerMovement : MonoBehaviour
         {
             rb.linearVelocity = throwDir * throwForce;
         }
+
+        if (throwSound != null && audioSource != null)
+        {
+            audioSource.PlayOneShot(throwSound);
+        }
     }
-
 }
-
-
