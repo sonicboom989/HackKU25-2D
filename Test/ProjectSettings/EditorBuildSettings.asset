@@ -26,6 +26,18 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/ShopAndPull.unity
     guid: 14f4c622b277c2e42bf0adf26d225a17
+  - enabled: 1
+    path: Assets/Scenes/ShopAndLegs.unity
+    guid: 651486412a11a584099f4bd1a74b3d8a
+  - enabled: 1
+    path: Assets/Scenes/level3.unity
+    guid: a18311432d0d9824988ec433519a06bb
+  - enabled: 1
+    path: Assets/Scenes/Shop.unity
+    guid: 19635e4d6f088fe4b965908022fe5e3c
+  - enabled: 1
+    path: Assets/Scenes/FinalScene.unity
+    guid: 52d9df79ede80dd42ae957cf390c6e0c
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   m_UseUCBPForAssetBundles: 0

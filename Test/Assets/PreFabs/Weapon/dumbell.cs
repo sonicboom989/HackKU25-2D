@@ -3,22 +3,38 @@
 public class Dumbbell : MonoBehaviour
 {
     public float lifetime = 3f;
-    public int damage = 1;
+    public int baseDamage = 1;
     public float speed = 10f;
-    public Vector3 spawnOffset = new Vector3(0, 0.5f, 0); // Adjust if needed
+    public Vector3 spawnOffset = new Vector3(0, 0.5f, 0);
 
     private Rigidbody2D rb;
+    private float finalDamage;
+
+    public AudioClip throwSound;
+    private AudioSource audioSource;
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-
-        // Move the dumbbell slightly to avoid immediate collision with the player
         transform.position += spawnOffset;
+
+        // Apply strength upgrade if unlocked
+        finalDamage = baseDamage;
+        if (PlayerPrefs.GetInt("StrengthUpgraded", 0) == 1)
+        {
+            finalDamage += 0.5f; // Add 0.5 damage
+        }
+
+        // 🔊 Play sound
+        audioSource = GetComponent<AudioSource>();
+        if (throwSound != null && audioSource != null)
+        {
+            audioSource.PlayOneShot(throwSound);
+        }
 
         Collider2D myCol = GetComponent<Collider2D>();
 
-        // Ignore collisions with the player
+        // Ignore player, coins, other dumbbells
         GameObject player = GameObject.FindGameObjectWithTag("Player");
         if (player != null)
         {
@@ -29,9 +45,7 @@ public class Dumbbell : MonoBehaviour
             }
         }
 
-        // Ignore collisions with coins
-        GameObject[] coins = GameObject.FindGameObjectsWithTag("Coin");
-        foreach (GameObject coin in coins)
+        foreach (GameObject coin in GameObject.FindGameObjectsWithTag("Coin"))
         {
             Collider2D coinCol = coin.GetComponent<Collider2D>();
             if (coinCol != null && myCol != null)
@@ -40,9 +54,7 @@ public class Dumbbell : MonoBehaviour
             }
         }
 
-        // Ignore collisions with other dumbbells
-        GameObject[] allDumbbells = GameObject.FindGameObjectsWithTag("Dumbbell");
-        foreach (GameObject db in allDumbbells)
+        foreach (GameObject db in GameObject.FindGameObjectsWithTag("Dumbbell"))
         {
             if (db != gameObject)
             {
@@ -54,12 +66,11 @@ public class Dumbbell : MonoBehaviour
             }
         }
 
-        // Move toward the mouse position
+        // Move
         Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         Vector2 direction = (mousePos - (Vector2)transform.position).normalized;
         rb.linearVelocity = direction * speed;
 
-        // Auto-destroy after a few seconds
         Destroy(gameObject, lifetime);
     }
 
@@ -67,13 +78,39 @@ public class Dumbbell : MonoBehaviour
     {
         if (other.CompareTag("Enemy"))
         {
-            MonsterHealth health = other.GetComponent<MonsterHealth>();
-            if (health != null)
+            int roundedDamage = Mathf.RoundToInt(finalDamage); // ✅ Convert float to int safely
+
+            // Level 1
+            MonsterHealth health1 = other.GetComponent<MonsterHealth>();
+            if (health1 != null)
             {
-                health.TakeDamage(damage);
+                health1.TakeDamage(roundedDamage);
+                Destroy(gameObject);
+                return;
             }
 
-            Destroy(gameObject); // Destroy only after hitting an enemy
+            // Level 2
+            Level2MonsterHealth health2 = other.GetComponent<Level2MonsterHealth>();
+            if (health2 != null)
+            {
+                health2.TakeDamage(roundedDamage);
+                Destroy(gameObject);
+                return;
+            }
+
+            // Boss
+            TreadmillHealth bossHealth = other.GetComponent<TreadmillHealth>();
+            if (bossHealth != null)
+            {
+                bossHealth.TakeDamage(roundedDamage);
+                Destroy(gameObject);
+                return;
+            }
+        }
+
+        if (!other.CompareTag("Player"))
+        {
+            Destroy(gameObject);
         }
     }
 }

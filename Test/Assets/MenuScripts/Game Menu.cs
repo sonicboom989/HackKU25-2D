@@ -11,4 +11,8 @@ public class GameMenu : MonoBehaviour
     { SceneManager.LoadScene(4);}
 
     // You can add a method for Shop later
+    public void LoadLevel3()
+    { SceneManager.LoadScene(7); }
+    public void Shop()
+    { SceneManager.LoadScene(8); }
 }

@@ -11,12 +11,37 @@ public class GameOverTransition : MonoBehaviour
         if (!hasTransitioned)
         {
             hasTransitioned = true;
-            Invoke(nameof(GoToMenu), delay);
+            Invoke(nameof(GoToLastShop), delay);
         }
     }
 
-    void GoToMenu()
+    void GoToLastShop()
     {
-        SceneManager.LoadScene("Game Menu"); // 🔁 Replace with your actual shop screen name
+        string lastLevel = PlayerPrefs.GetString("LastLevel", "Level1");
+
+        // Level 1 death → back to main menu
+        if (lastLevel == "Level1")
+        {
+            SceneManager.LoadScene("Game Menu");
+            return;
+        }
+
+        // Otherwise continue as normal
+        PlayerPrefs.SetString("FromGameplay", "true");
+
+        switch (lastLevel)
+        {
+            case "level2":
+                PlayerPrefs.SetString("LastShop", "ShopAndPull");
+                SceneManager.LoadScene("ShopAndPull");
+                break;
+            default:
+                PlayerPrefs.SetString("LastShop", "ShopAndLegs");
+                SceneManager.LoadScene("ShopAndLegs");
+                break;
+        }
+
+        PlayerPrefs.Save();
     }
+
 }

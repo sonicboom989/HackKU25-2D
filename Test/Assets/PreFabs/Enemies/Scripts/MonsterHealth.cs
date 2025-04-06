@@ -68,6 +68,8 @@ public class MonsterHealth : MonoBehaviour
             counter.EnemyDefeated();
         }
 
+
+
         // Destroy the object after the animation finishes
         Destroy(gameObject, deathAnimLength);
     }

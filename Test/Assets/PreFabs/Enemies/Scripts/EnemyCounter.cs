@@ -1,29 +1,32 @@
 ﻿using UnityEngine;
-using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using TMPro;
 
-public class Level2EnemyCounter : MonoBehaviour
+public class EnemyCounter : MonoBehaviour
 {
-    public int totalEnemiesToKill = 25;
+    public int totalEnemiesToKill = 36;
     private int enemiesKilled = 0;
 
-    public Text counterText; // Assign your UI text in the Inspector
+    public TextMeshProUGUI counterText; // 👈 TMP support
 
     void Start()
     {
         UpdateUI();
     }
 
-    public void OnEnemyKilled()
+    public void EnemyDefeated()
     {
         enemiesKilled++;
         UpdateUI();
 
         if (enemiesKilled >= totalEnemiesToKill)
         {
-            SceneManager.LoadScene("ShopAndLegs");
+            PlayerPrefs.SetString("LastLevel", "Level1");
+            PlayerPrefs.SetString("FromGameplay", "true"); // ✅ Add this
+            SceneManager.LoadScene("ShopAndPull");
         }
     }
+
 
     void UpdateUI()
     {

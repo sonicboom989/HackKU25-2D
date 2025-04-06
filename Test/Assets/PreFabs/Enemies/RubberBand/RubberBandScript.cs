@@ -16,7 +16,7 @@ public class RubberBandEnemy : MonoBehaviour
             animator.runtimeAnimatorController = animControllers[randomIndex];
         }
 
-        // Also change sprite visually if you want static variation too (optional)
+        // Also change sprite visually if you want static variation too 
         SpriteRenderer sr = GetComponent<SpriteRenderer>();
         if (sr != null && colorVariants.Length > 0)
         {

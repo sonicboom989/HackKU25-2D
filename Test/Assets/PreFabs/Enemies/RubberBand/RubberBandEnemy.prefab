@@ -14,9 +14,9 @@ GameObject:
   - component: {fileID: 4934976436241190089}
   - component: {fileID: 8439828471613785587}
   - component: {fileID: 5956288029446772023}
-  - component: {fileID: 2458180887618339435}
   - component: {fileID: 6197960306270349818}
   - component: {fileID: -3718007892550266169}
+  - component: {fileID: 7918732540858977086}
   m_Layer: 0
   m_Name: RubberBandEnemy
   m_TagString: Enemy
@@ -202,22 +202,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 3
---- !u!114 &2458180887618339435
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4035880077827850426}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dc951c6b6a191c643af71dc3b53dcabc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxHealth: 7
-  coinPrefab: {fileID: 3280935676356910619, guid: c83ffdefd58a4754f80265de0a89b9aa, type: 3}
-  coinAmount: 1
-  deathAnimLength: 0.5
 --- !u!114 &6197960306270349818
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -251,3 +235,19 @@ MonoBehaviour:
   - {fileID: 9100000, guid: 26d5ab570ac3489458fd3a7065a2d378, type: 2}
   - {fileID: 9100000, guid: 9f10ece5e777ec34693515bb31112740, type: 2}
   - {fileID: 9100000, guid: a0f3f863db6311f479a8da7370bbd01b, type: 2}
+--- !u!114 &7918732540858977086
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4035880077827850426}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f020b8e8552008242b9974a9d301391d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 7
+  coinPrefab: {fileID: 3280935676356910619, guid: c83ffdefd58a4754f80265de0a89b9aa, type: 3}
+  coinAmount: 1
+  deathAnimLength: 1
