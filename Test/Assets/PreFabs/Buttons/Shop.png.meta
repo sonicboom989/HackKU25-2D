@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: dabb39edc96c49e4195db688c1c83a91
+guid: 4a7f0699555abfb4f85f1653909e3b4c
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -7752328596714263423
-    second: Exit (2)_0
+      213: -1151905075149521417
+    second: Shop_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Exit (2)_0
+      name: Shop_0
       rect:
         serializedVersion: 2
         x: 5
-        y: 35
-        width: 93
-        height: 33
+        y: 34
+        width: 88
+        height: 34
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 18c6eb207323a6490800000000000000
-      internalID: -7752328596714263423
+      spriteID: 7fd3ebcef6c9300f0800000000000000
+      internalID: -1151905075149521417
       vertices: []
       indices: 
       edges: []
