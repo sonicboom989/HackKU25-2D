@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 
 public class MonsterHealth : MonoBehaviour
 {
@@ -8,16 +8,21 @@ public class MonsterHealth : MonoBehaviour
     public GameObject coinPrefab;
     public int coinAmount = 1;
 
+    public float deathAnimLength = 1.0f; // 👈 Set this to match your animation length
+    private Animator animator;
+    private bool isDying = false;
+
     void Start()
     {
         currentHealth = maxHealth;
+        animator = GetComponent<Animator>();
     }
 
     public void TakeDamage(int damage)
     {
-        currentHealth -= damage;
-        Debug.Log($"{gameObject.name} took {damage} damage. Current health: {currentHealth}");
+        if (isDying) return;
 
+        currentHealth -= damage;
         if (currentHealth <= 0)
         {
             Die();
@@ -26,16 +31,38 @@ public class MonsterHealth : MonoBehaviour
 
     void Die()
     {
-        Debug.Log($"{gameObject.name} died. Dropping {coinAmount} coin(s).");
+        isDying = true;
 
-        // Drop coins with a small random offset
-        for (int i = 0; i < coinAmount; i++)
+        // Disable AI and collisions
+        EnemyAI ai = GetComponent<EnemyAI>();
+        if (ai != null)
         {
-            Vector3 spawnPos = transform.position + new Vector3(Random.Range(-0.5f, 0.5f), Random.Range(-0.5f, 0.5f), 0);
-            Instantiate(coinPrefab, spawnPos, Quaternion.identity);
+            ai.enabled = false;
         }
 
-        // Instead of destroying the enemy, deactivate it.
-        gameObject.SetActive(false);
+        Collider2D col = GetComponent<Collider2D>();
+        if (col != null)
+        {
+            col.enabled = false;
+        }
+
+        // Play death animation
+        if (animator != null)
+        {
+            animator.SetTrigger("Die");
+        }
+
+        // Drop coins
+        if (coinPrefab != null)
+        {
+            for (int i = 0; i < coinAmount; i++)
+            {
+                Instantiate(coinPrefab, transform.position, Quaternion.identity);
+            }
+        }
+
+        // Destroy the object after the animation finishes
+        Destroy(gameObject, deathAnimLength);
     }
+
 }
