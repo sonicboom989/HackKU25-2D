@@ -3,44 +3,45 @@ using UnityEngine.SceneManagement;
 
 public class ExitShop : MonoBehaviour
 {
-    private string nextScene;
-
-    void Start()
+    public void OnExitPressed()
     {
-        string lastScene = PlayerPrefs.GetString("LastLevel", "Level1");
-        string fromGameplay = PlayerPrefs.GetString("FromGameplay", "false");
+        // Get the current active scene at the moment the exit button is pressed.
+        string currentScene = SceneManager.GetActiveScene().name;
 
-        if (fromGameplay == "true")
+        // Check for specific shop scenes.
+        if (currentScene == "ShopAndPull")
         {
-            if (lastScene == "Level1")
-            {
-                nextScene = "Level1";
-                PlayerPrefs.SetString("LastShop", "Game Menu");
-            }
-            else if (lastScene == "level2")
-            {
-                nextScene = "level2";
-                PlayerPrefs.SetString("LastShop", "ShopAndPull");
-            }
-            else
-            {
-                nextScene = "level3";
-                PlayerPrefs.SetString("LastShop", "ShopAndLegs");
-            }
-
-            PlayerPrefs.SetString("FromGameplay", "false"); // ✅ Reset the flag after use
+            SceneManager.LoadScene("level2");
+        }
+        else if (currentScene == "ShopAndLegs")
+        {
+            SceneManager.LoadScene("level3");
+        }
+        else if (currentScene == "Game Menu")
+        {
+            SceneManager.LoadScene("Level1");
         }
         else
         {
-            // If player entered the shop manually (not from gameplay), go back to default
-            nextScene = "Level1"; // Or "MainMenu" if you prefer
+            // Fallback logic using PlayerPrefs.
+            string lastScene = PlayerPrefs.GetString("LastLevel", "level1");
+            string fromGameplay = PlayerPrefs.GetString("FromGameplay", "false");
+            string nextLevel = PlayerPrefs.GetString("NextLevel", "level1");
+
+            string nextScene;
+            if (fromGameplay == "true")
+            {
+                nextScene = nextLevel;
+                PlayerPrefs.SetString("FromGameplay", "false");
+            }
+            else
+            {
+                // Return to the same level if the shop was entered manually.
+                nextScene = lastScene;
+            }
+
+            PlayerPrefs.Save();
+            SceneManager.LoadScene(nextScene);
         }
-
-        PlayerPrefs.Save();
-    }
-
-    public void OnExitPressed()
-    {
-        SceneManager.LoadScene(nextScene);
     }
 }

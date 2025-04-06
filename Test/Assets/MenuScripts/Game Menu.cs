@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class GameMenu : MonoBehaviour
@@ -14,5 +14,10 @@ public class GameMenu : MonoBehaviour
     public void LoadLevel3()
     { SceneManager.LoadScene(7); }
     public void Shop()
-    { SceneManager.LoadScene(8); }
+    {
+
+        
+
+        SceneManager.LoadScene(8); 
+    }
 }

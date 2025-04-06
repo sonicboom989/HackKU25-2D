@@ -21,9 +21,12 @@ public class Level2Counter : MonoBehaviour
 
         if (enemiesKilled >= totalEnemiesToKill)
         {
-            PlayerPrefs.SetString("LastLevel", "Level2");       // Track last level
-            PlayerPrefs.SetString("FromGameplay", "true");      // ✅ Set gameplay flag
+            PlayerPrefs.SetString("LastLevel", "Level2");
+            PlayerPrefs.SetString("FromGameplay", "true");
+            PlayerPrefs.SetString("NextLevel", "level3"); // ✅ SET IT HERE
+            PlayerPrefs.Save();
             SceneManager.LoadScene("ShopAndLegs");
+
         }
     }
 

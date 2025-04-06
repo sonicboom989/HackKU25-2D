@@ -22,8 +22,12 @@ public class EnemyCounter : MonoBehaviour
         if (enemiesKilled >= totalEnemiesToKill)
         {
             PlayerPrefs.SetString("LastLevel", "Level1");
-            PlayerPrefs.SetString("FromGameplay", "true"); // ✅ Add this
+            PlayerPrefs.SetString("FromGameplay", "true");
+            PlayerPrefs.SetString("NextLevel", "level2"); // ✅ SET IT HERE
+            PlayerPrefs.Save();
             SceneManager.LoadScene("ShopAndPull");
+
+
         }
     }
 
