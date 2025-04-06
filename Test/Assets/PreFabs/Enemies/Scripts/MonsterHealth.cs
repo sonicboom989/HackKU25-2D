@@ -61,8 +61,14 @@ public class MonsterHealth : MonoBehaviour
             }
         }
 
+        // Notify the enemy counter system
+        EnemyCounter counter = FindFirstObjectByType<EnemyCounter>();
+        if (counter != null)
+        {
+            counter.EnemyDefeated();
+        }
+
         // Destroy the object after the animation finishes
         Destroy(gameObject, deathAnimLength);
     }
-
 }

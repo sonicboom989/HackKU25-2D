@@ -7,6 +7,8 @@ public class GameMenu : MonoBehaviour
     {
         SceneManager.LoadScene(2);
     }
+    public void LoadLevel2()
+    { SceneManager.LoadScene(4);}
 
     // You can add a method for Shop later
 }

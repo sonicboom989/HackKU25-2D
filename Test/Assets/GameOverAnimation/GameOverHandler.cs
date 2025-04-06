@@ -1,17 +1,22 @@
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class GameOverHandler : MonoBehaviour
+public class GameOverTransition : MonoBehaviour
 {
-    public float delayBeforeReturn = 5.0f; // Match your animation length
+    public float delay = 5.0f; // Set to your death animation length
+    private bool hasTransitioned = false;
 
     void Start()
     {
-        Invoke("ReturnToMenu", delayBeforeReturn);
+        if (!hasTransitioned)
+        {
+            hasTransitioned = true;
+            Invoke(nameof(GoToMenu), delay);
+        }
     }
 
-    void ReturnToMenu()
+    void GoToMenu()
     {
-        SceneManager.LoadScene("Game Menu"); // Replace with exact scene name
+        SceneManager.LoadScene("Game Menu"); // 🔁 Replace with your actual shop screen name
     }
 }

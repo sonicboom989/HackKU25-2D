@@ -204,7 +204,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2103264672}
         m_TargetAssemblyTypeName: GameMenu, Assembly-CSharp
-        m_MethodName: LoadLevel1
+        m_MethodName: LoadLevel2
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -234,7 +234,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -7279525710136958521, guid: 0c9cb0e6c47d34f4b9b3925f7a518514, type: 3}
+  m_Sprite: {fileID: -8343408297307309014, guid: cb6b973f420c71a408c64366271d4f24, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
