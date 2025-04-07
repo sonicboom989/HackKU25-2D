@@ -3,7 +3,7 @@ using UnityEngine.SceneManagement;
 
 public class GameOverTransition : MonoBehaviour
 {
-    public float delay = 5.0f; // Set to your death animation length
+    public float delay = 5.0f; // Duration of your death animation
     private bool hasTransitioned = false;
 
     void Start()
@@ -11,37 +11,58 @@ public class GameOverTransition : MonoBehaviour
         if (!hasTransitioned)
         {
             hasTransitioned = true;
-            Invoke(nameof(GoToLastShop), delay);
+            Invoke(nameof(GoToShopBasedOnPreviousLevel), delay);
         }
     }
 
-    void GoToLastShop()
+    void GoToShopBasedOnPreviousLevel()
     {
-        string lastLevel = PlayerPrefs.GetString("LastLevel", "Level1");
+        // IMPORTANT: Ensure that the "PreviousLevel" value is set in your gameplay scene,
+        // before you load the GameOver scene. For example, in your gameplay script, do:
+        //
+        //   string currentLevel = SceneManager.GetActiveScene().name;
+        //   PlayerPrefs.SetString("PreviousLevel", currentLevel);
+        //   PlayerPrefs.Save();
+        //   SceneManager.LoadScene("GameOver");
+        //
+        // This ensures that "PreviousLevel" contains the gameplay scene's name, not "GameOver".
 
-        // Level 1 death → back to main menu
-        if (lastLevel == "Level1")
+        // Retrieve the stored previous level.
+        // Default to "Level1" if no value was saved.
+        string previousLevel = PlayerPrefs.GetString("PreviousLevel", "Level1");
+
+        // Debug log to output the retrieved previousLevel.
+        Debug.Log("GameOverTransition: PreviousLevel retrieved: " + previousLevel);
+
+        // Check for an invalid value. If previousLevel is "GameOver", then something went wrong.
+        if (previousLevel == "GameOver")
         {
+            Debug.LogWarning("GameOverTransition: PreviousLevel is 'GameOver', which is invalid. " +
+                             "Make sure you set PreviousLevel in your gameplay scene before loading GameOver.");
             SceneManager.LoadScene("Game Menu");
             return;
         }
 
-        // Otherwise continue as normal
-        PlayerPrefs.SetString("FromGameplay", "true");
-
-        switch (lastLevel)
+        // Use the case-sensitive scene names to load the correct shop.
+        if (previousLevel == "level2")
         {
-            case "level2":
-                PlayerPrefs.SetString("LastShop", "ShopAndPull");
-                SceneManager.LoadScene("ShopAndPull");
-                break;
-            default:
-                PlayerPrefs.SetString("LastShop", "ShopAndLegs");
-                SceneManager.LoadScene("ShopAndLegs");
-                break;
+            Debug.Log("GameOverTransition: Loading ShopAndPull since PreviousLevel is level2");
+            SceneManager.LoadScene("ShopAndPull");
         }
-
-        PlayerPrefs.Save();
+        else if (previousLevel == "level3")
+        {
+            Debug.Log("GameOverTransition: Loading ShopAndLegs since PreviousLevel is level3");
+            SceneManager.LoadScene("ShopAndLegs");
+        }
+        else if (previousLevel == "Level1")
+        {
+            Debug.Log("GameOverTransition: Loading Shop for Level1");
+            SceneManager.LoadScene("Shop");
+        }
+        else
+        {
+            Debug.Log("GameOverTransition: Unknown PreviousLevel. Loading Game Menu as fallback.");
+            SceneManager.LoadScene("Game Menu");
+        }
     }
-
 }

@@ -71,6 +71,13 @@ public class PlayerHealth : MonoBehaviour
 
     void GameOver()
     {
-        SceneManager.LoadScene("GameOver"); // Make sure the scene is added in Build Settings
+        // Save the current gameplay scene's name into "PreviousLevel"
+        // This should be the scene the player was in before transitioning to GameOver.
+        string currentLevel = SceneManager.GetActiveScene().name;
+        PlayerPrefs.SetString("PreviousLevel", currentLevel);
+        PlayerPrefs.Save();
+
+        // Now load the GameOver scene.
+        SceneManager.LoadScene("GameOver");
     }
 }
