@@ -30,7 +30,11 @@ public class FinalSceneTimer : MonoBehaviour
 
     void QuitGame()
     {
-        Debug.Log("Game is quitting...");
+        // Clear all PlayerPrefs before quitting the application
+        PlayerPrefs.DeleteAll();
+        PlayerPrefs.Save();
+        Debug.Log("PlayerPrefs cleared. Game is quitting...");
+
 #if UNITY_EDITOR
         UnityEditor.EditorApplication.isPlaying = false;
 #else
