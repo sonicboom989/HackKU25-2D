@@ -1,4 +1,4 @@
-#Get Big, Man (HackKU 2025)
+# Get Big, Man (HackKU 2025)
 
 Winner: Best Beginner Project at HackKU 2025!
 
