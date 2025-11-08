@@ -6,7 +6,7 @@ Winner: Best Beginner Project at HackKU 2025!
 
 You play as a new gym-goer, initially small and weak. Your goal is to conquer different areas of the gym by fighting enemies modeled after rogue equipment. As you defeat enemies, you collect coins, buy upgrades, and literally evolve from Big_Man to Bigger_Man and finally Biggerer_Man!
 
-### Play the live version on [Itch.io]([url](https://ziverz.itch.io/get-big-man))!
+Play the live version on [Itch.io]([url](https://ziverz.itch.io/get-big-man))!
 
 ## Gameplay & Features
 
@@ -54,6 +54,6 @@ Lucas Root ([cringey303]([url](https://github.com/cringey303))) - C# programming
 
 Ziv Cohen ([ZivCohen-projects]([url](https://github.com/ZivCohen-projects))) - C# programming: main game logic
 
-Luke Coffman ([sonicboom989](https://github.com/sonicboom989)) - C# Programming, version control manager
+Luke Coffman ([sonicboom989]([url]https://github.com/sonicboom989))) - C# Programming, version control manager
 
 Noah Short ([ShortyMcGee]([url](https://github.com/ShortyMcGee))) - Art & Animation
