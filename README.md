@@ -1,4 +1,4 @@
-Get Big, Man (HackKU 2025)
+#Get Big, Man (HackKU 2025)
 
 Winner: Best Beginner Project at HackKU 2025!
 
@@ -6,9 +6,9 @@ Winner: Best Beginner Project at HackKU 2025!
 
 You play as a new gym-goer, initially small and weak. Your goal is to conquer different areas of the gym by fighting enemies modeled after rogue equipment. As you defeat enemies, you collect coins, buy upgrades, and literally evolve from Big_Man to Bigger_Man and finally Biggerer_Man!
 
-Play the live version on Itch.io!
+### Play the live version on [Itch.io]([url](https://ziverz.itch.io/get-big-man))!
 
-Gameplay & Features
+## Gameplay & Features
 
     Evolving Character: Progress through three character evolutions (Big_Man, Bigger_Man, Biggerer_Man), each with unique sprites and stats.
 
@@ -20,7 +20,7 @@ Gameplay & Features
 
     Original Art & Sound: Features all-original pixel art created in Aseprite and an original soundtrack and SFX (like "GET BIG, MAN!") produced in FL Studio.
 
-Tech Stack
+## Tech Stack
 
     Game Engine: Unity (version 2022.3.15f1)
 
@@ -32,7 +32,7 @@ Tech Stack
 
     Version Control: Git & GitHub
 
-How to Run (for Developers)
+## How to Run (for Developers)
 
 This is a standard Unity project. The main project folder is Test/.
 
@@ -48,12 +48,12 @@ This is a standard Unity project. The main project folder is Test/.
 
     Press the Play button in the Unity Editor.
 
-The Team
+## The Team
 
-    Lucas Root (cringey303) - C# programming and music
+    Lucas Root ([cringey303]([url](https://github.com/cringey303))) - C# programming and music
 
-    Ziv Cohen (ZivCohen-projects) - C# programming: main game logic
+    Ziv Cohen ([ZivCohen-projects]([url](https://github.com/ZivCohen-projects))) - C# programming: main game logic
 
-    Luke Coffman (sonicboom989) - C# Programming, version control manager
+    Luke Coffman ([sonicboom989](https://github.com/sonicboom989)) - C# Programming, version control manager
 
-    Noah Short (ShortyMcGee) - Art & Animation
+    Noah Short ([ShortyMcGee]([url](https://github.com/ShortyMcGee))) - Art & Animation
