@@ -50,10 +50,10 @@ This is a standard Unity project. The main project folder is Test/.
 
 ## The Team
 
-    Lucas Root ([cringey303]([url](https://github.com/cringey303))) - C# programming and music
+Lucas Root ([cringey303]([url](https://github.com/cringey303))) - C# programming and music
 
-    Ziv Cohen ([ZivCohen-projects]([url](https://github.com/ZivCohen-projects))) - C# programming: main game logic
+Ziv Cohen ([ZivCohen-projects]([url](https://github.com/ZivCohen-projects))) - C# programming: main game logic
 
-    Luke Coffman ([sonicboom989](https://github.com/sonicboom989)) - C# Programming, version control manager
+Luke Coffman ([sonicboom989](https://github.com/sonicboom989)) - C# Programming, version control manager
 
-    Noah Short ([ShortyMcGee]([url](https://github.com/ShortyMcGee))) - Art & Animation
+Noah Short ([ShortyMcGee]([url](https://github.com/ShortyMcGee))) - Art & Animation
