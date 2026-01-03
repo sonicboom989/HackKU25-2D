@@ -32,7 +32,7 @@ Play the live version on [Itch.io](https://ziverz.itch.io/get-big-man)!
 
     Version Control: Git & GitHub
 
-## How to Run (for Developers)
+## Building from source
 
 This is a standard Unity project. The main project folder is Test/.
 
